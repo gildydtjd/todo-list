@@ -12,7 +12,7 @@ let initialTodos: Itodo[] = [];
 export const useTodo = () => {
   const [todoState, setTodoState] = useState(initialTodos);
   let nextIdState = 0;
-
+  
   useEffect(() => {
     loadData();
   }, []);
@@ -51,8 +51,10 @@ export const useTodo = () => {
 
   const loadData = () => {
     let data = localStorage.getItem('todos');
-    if (data === undefined) data = '';
-    initialTodos = JSON.parse(data!);
+    if (data === undefined || data === null) {
+      data = JSON.stringify([]);
+    }
+    initialTodos = JSON.parse(data);
     if (initialTodos && initialTodos.length >= 1) {
       incrementNextId();
     }

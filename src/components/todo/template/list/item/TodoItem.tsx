@@ -1,6 +1,6 @@
 import { CheckOutlined, DeleteOutlined } from '@ant-design/icons';
 import { Itodo } from '../../../TodoService';
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 
 const Remove = styled.div`
