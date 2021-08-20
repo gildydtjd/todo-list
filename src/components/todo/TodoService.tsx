@@ -4,6 +4,7 @@ export type Itodo = {
   id: number;
   text: string;
   done: boolean;
+  dead: string;
 };
 
 let initialTodos: Itodo[] = [];
@@ -24,13 +25,11 @@ export const useTodo = () => {
     nextIdState = nextIdState + 1;
   };
 
-  const toggleTodo = (id: number) => {
-    //@TODO
-  };
+  const toggleTodo = (id: number) => ({});
 
   const removeTodo = (id: number) => {
     setTodoState((prevState) =>
-      prevState.filter((todo: Itodo) => todo.id === id)
+      prevState.filter((todo: Itodo) => todo.id !== id)
     );
   };
 

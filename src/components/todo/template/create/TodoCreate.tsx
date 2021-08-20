@@ -62,10 +62,14 @@ const TodoCreate = ({
 }: TodoCreateProps) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState('');
+  const [deadline, setDeadline] = useState('');
 
   const handleToggle = () => setOpen(!open);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setValue(e.target.value);
+
+  const deadChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setDeadline(e.target.value);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // 새로고침 방지
@@ -74,10 +78,12 @@ const TodoCreate = ({
       id: nextId,
       text: value,
       done: false,
+      dead: deadline,
     });
     incrementNextId(); // nextId 하나 증가
 
     setValue(''); // input 초기화
+    setDeadline(''); // deadlien 초기화
     setOpen(false); // open 닫기
   };
 
@@ -91,6 +97,7 @@ const TodoCreate = ({
             onChange={handleChange}
             value={value}
           />
+          <Input type="date" onChange={deadChange} value={deadline} />
 
           <CircleButton onClick={handleToggle} open={open}>
             <PlusCircleOutlined />
