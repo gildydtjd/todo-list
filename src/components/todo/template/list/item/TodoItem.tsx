@@ -65,14 +65,8 @@ interface TodoItemProps {
 }
 
 const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
-  const [done, setDone] = useState(false);
-  const handleToggle = () => {
-    toggleTodo(todo.id);
-    if (done === false) {
-      setDone(true);
-    } else {
-      setDone(false);
-    }
+  const handleToggle = (id: number) => {
+    toggleTodo(id);
   };
 
   const handleRemove = () => {
@@ -81,12 +75,12 @@ const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
 
   return (
     <TodoItemBlock>
-      <CheckCircle done={done} onClick={handleToggle}>
-        {done && <CheckOutlined />}
+      <CheckCircle done={todo.done} onClick={() => handleToggle(todo.id)}>
+        {todo.done && <CheckOutlined />}
       </CheckCircle>
-      <Text done={done}>{todo.id}</Text>
-      <Text done={done}>{todo.text}</Text>
-      <Text done={done}>{todo.dead}</Text>
+      <Text done={todo.done}>{todo.id}</Text>
+      <Text done={todo.done}>{todo.text}</Text>
+      <Text done={todo.done}>{todo.dead}</Text>
 
       <Remove onClick={handleRemove}>
         <DeleteOutlined />

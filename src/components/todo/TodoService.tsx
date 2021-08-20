@@ -25,7 +25,13 @@ export const useTodo = () => {
     nextIdState = nextIdState + 1;
   };
 
-  const toggleTodo = (id: number) => ({});
+  const toggleTodo = (id: number) => {
+    setTodoState((prevState) =>
+      prevState.map((todo) =>
+        todo.id === id ? { ...todo, done: !todo.done } : todo
+      )
+    );
+  };
 
   const removeTodo = (id: number) => {
     setTodoState((prevState) =>
